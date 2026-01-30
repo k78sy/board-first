@@ -1,15 +1,15 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div>
-    <router-link to="/">Home</router-link>
-    <router-link to="/write">Write</router-link>
-  </div>
-  <div>
-    <router-view />
-  </div>
+<nav>
+<router-link to="/">홈</router-link>
+<router-link to="/write">글쓰기</router-link>
+</nav>
+<main>
+  <router-view></router-view>
+</main>
+
 </template>
 
 <style scoped></style>

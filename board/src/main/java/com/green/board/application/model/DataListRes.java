@@ -7,7 +7,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BoardPostRep {
+public class DataListRes {
+    private int id;
     private String title;
-    private String contents;
+    private String createdAt;
 }

@@ -1,8 +1,7 @@
 package com.green.board.application;
 
-import com.green.board.application.model.BoardDetailReq;
-import com.green.board.application.model.BoardListReq;
-import com.green.board.application.model.BoardPostRep;
+import com.green.board.application.model.DataListRes;
+import com.green.board.application.model.DataRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,44 +9,25 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/board1")
-public class BoardController  {
+@RequestMapping("/db")
+public class BoardController {
     private final BoardService boardService;
 
-//    @PostMapping("/board1")
-//    public String test(@RequestParam String title){
-//        System.out.println("title: " + title);
-//        return "통신 성공";
-//    }
-
-//    @PostMapping("/board1")
-//    public String test(@RequestBody BoardCreateRep rep){
-//        System.out.println("통신내용: " +rep);
-//        return "POST 통신";
-//    }
-
-//    @PostMapping("/board1")
-//    public int BoardPost(@RequestBody BoardPostRep req){
-//        int result = req;
-//        return result;
+//    @GetMapping
+//    public int test(@RequestParam String test){
+//        System.out.println(test);
+//        return 1;
 //    }
 
     @PostMapping
-    public int postArticle(@RequestBody BoardPostRep req){
-        int result = boardService.boardPost(req);
-        System.out.println(result);
+    public int post(@RequestBody DataRes res){
+        int result = boardService.dataPost(res);
+        System.out.println("Req" + res);
         return result;
     }
 
     @GetMapping
-    public List<BoardListReq> listAll(){
-        return boardService.listAll();
-    }
-
-    @GetMapping("{id}")
-    public BoardDetailReq oneDetail(@PathVariable int id){
-        BoardDetailReq result = boardService.detailOne(id);
-        System.out.println("id" + id);
-        return result;
+    public List<DataListRes> findList(){
+        return boardService.dataList();
     }
 }

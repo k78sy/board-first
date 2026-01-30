@@ -2,12 +2,12 @@ package com.green.board.application.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-public class BoardDetailReq {
-    private int id;
+@ToString
+public class DataRes {
     private String title;
     private String contents;
-    private String createdAt;
 }

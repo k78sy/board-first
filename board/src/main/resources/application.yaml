@@ -2,7 +2,7 @@ spring:
   application:
     name: board
   datasource:
-    url: jdbc:mysql://localhost:3306/board1
+    url: jdbc:mysql://localhost:3306/db
     username: root
     password: fkqlzjxj7831!
 

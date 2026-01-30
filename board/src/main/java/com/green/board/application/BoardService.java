@@ -1,8 +1,7 @@
 package com.green.board.application;
 
-import com.green.board.application.model.BoardDetailReq;
-import com.green.board.application.model.BoardListReq;
-import com.green.board.application.model.BoardPostRep;
+import com.green.board.application.model.DataListRes;
+import com.green.board.application.model.DataRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +12,11 @@ import java.util.List;
 public class BoardService {
     private final BoardMapper boardMapper;
 
-    public int boardPost(BoardPostRep req){
-        return boardMapper.save(req);
+    public int dataPost(DataRes res){
+        return boardMapper.save(res);
     }
 
-    public List<BoardListReq> listAll(){
-        return boardMapper.listAll();
-    }
-
-    public BoardDetailReq detailOne(int id){
-        return boardMapper.detail(id);
+    public List<DataListRes> dataList(){
+        return boardMapper.findList();
     }
 }
