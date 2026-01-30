@@ -3,6 +3,7 @@ package com.green.board.application;
 import com.green.board.application.model.DataListRes;
 import com.green.board.application.model.DataOneRes;
 import com.green.board.application.model.DataRes;
+import com.green.board.application.model.DataUpdateRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,5 +42,11 @@ public class BoardController {
     public int delete(@RequestParam int id){
         System.out.println("delete-id:" + id);
         return boardService.dataDelete(id);
+    }
+
+    @PutMapping
+    public int modify(@RequestBody DataUpdateRes res){
+        System.out.println("modify:" + res);
+        return boardService.dataUpdate(res);
     }
 }

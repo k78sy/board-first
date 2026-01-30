@@ -3,6 +3,7 @@ package com.green.board.application;
 import com.green.board.application.model.DataListRes;
 import com.green.board.application.model.DataOneRes;
 import com.green.board.application.model.DataRes;
+import com.green.board.application.model.DataUpdateRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,9 @@ public class BoardService {
 
     public int dataDelete(int id){
         return boardMapper.delete(id);
+    }
+
+    public int dataUpdate(DataUpdateRes res){
+        return boardMapper.mod(res);
     }
 }

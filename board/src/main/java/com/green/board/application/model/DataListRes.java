@@ -11,4 +11,5 @@ public class DataListRes {
     private int id;
     private String title;
     private String createdAt;
+
 }

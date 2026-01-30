@@ -18,6 +18,10 @@ class httpService {
     const res = await axios.delete("/db", { params });
     return res.data;
   }
+  async modify(params){
+    const res = await axios.put("/db", params);
+    return res.data;
+  }
 }
 
 export default new httpService();

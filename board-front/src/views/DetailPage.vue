@@ -33,6 +33,9 @@ const doDel = async () => {
     }
 }
 
+// const doMod = () =>{
+//     router.push(`/mod/${state.detail.id}`)
+// }
 
 </script>
 
@@ -47,6 +50,7 @@ const doDel = async () => {
         </ul>
         <div>
             <button @click='doDel'>삭제</button>
+            <router-link :to="`/mod/${state.detail.id}`"><button>수정</button></router-link>
         </div>
     </main>
 </template>
