@@ -14,5 +14,5 @@ public interface BoardMapper {
     List<DataListRes> findList();
     DataOneRes findOne(int id);
     int delete(int id);
-    int mod(DataUpdateRes res);
+    int modify(DataUpdateRes res);
 }

@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, onMounted } from 'vue';
+import { reactive, onMounted, h } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import httpService from '@/service/httpService';
 
@@ -14,31 +14,37 @@ const state = reactive({
     }
 })
 
-const submit = async () => {
-    if (state.data.id === 0) {
-        const result = await httpService.save(state.data);
-        console.log(result);
-
-        if (result) { router.push('/') }
-    } else {
-        const result = await httpService.modify(state.data);
-        if (result) { router.push(`/detail/${state.data.id}`) }
-    }
-    state.data.id = 0;
-    state.data.title = '';
-    state.data.contents = '';
-}
-
 onMounted(async () => {
-    state.data.id = 0;
-    state.data.title = '';
-    state.data.contents = '';
-
     if (route.params.id) {
-        const id = route.params.id;
-        state.data = await httpService.findOne(id);
+        state.data = await httpService.findOne(route.params.id)
+        console.log(state.data);
     }
 })
+
+const submit = async () => {
+
+    const result = state.data.id ? await httpService.modify(state.data) : await httpService.save(state.data);
+    router.push({
+        path: state.data.id? `/detail/${state.data.id}` : '/'
+    })
+
+    // if (state.data.id) {
+    //     console.log(state.data);
+    //     const result = await httpService.modify(state.data);
+    //     console.log(result)
+    //     if(result){
+    //         router.push(`/detail/${state.data.id}`)
+            
+    //     }
+    // } else {
+    //     const result = await httpService.save(state.data)
+    //     console.log(result);
+    //     if(result){
+    //         router.push('/')
+    //     }
+    // }
+}
+
 </script>
 
 <template>

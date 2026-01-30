@@ -21,21 +21,22 @@ onMounted(async () => {
     state.detail = await httpService.findOne(id);
 })
 
-
 const doDel = async () => {
     if(!confirm('삭제하시겠습니까?')){
-        return;
+        return
     }
-    const param = {id:state.detail.id};
-    const result = await httpService.delete(param);
+
+    const params = {id:state.detail.id}
+    const result = await httpService.delete(params)
     if(result){
         router.push('/')
     }
 }
 
-// const doMod = () =>{
-//     router.push(`/mod/${state.detail.id}`)
-// }
+const doMod = () =>{
+    const id = state.detail.id;
+    router.push(`/mod/${id}`);
+}
 
 </script>
 
@@ -49,8 +50,8 @@ const doDel = async () => {
             <li>{{ state.detail.createdAt }}</li>
         </ul>
         <div>
-            <button @click='doDel'>삭제</button>
-            <router-link :to="`/mod/${state.detail.id}`"><button>수정</button></router-link>
+            <button @click="doDel">삭제</button>
+            <button @click="doMod">수정</button>
         </div>
     </main>
 </template>

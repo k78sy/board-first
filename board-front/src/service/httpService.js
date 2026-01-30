@@ -14,12 +14,12 @@ class httpService {
     const res = await axios.get(`/db/${id}`);
     return res.data;
   }
-  async delete(params) {
-    const res = await axios.delete("/db", { params });
+  async delete(params){
+    const res = await axios.delete('/db' , {params});
     return res.data;
   }
   async modify(params){
-    const res = await axios.put("/db", params);
+    const res = await axios.put('db', params);
     return res.data;
   }
 }

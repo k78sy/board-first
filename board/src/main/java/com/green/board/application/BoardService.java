@@ -30,7 +30,7 @@ public class BoardService {
         return boardMapper.delete(id);
     }
 
-    public int dataUpdate(DataUpdateRes res){
-        return boardMapper.mod(res);
+    public int dataModify(DataUpdateRes res){
+        return boardMapper.modify(res);
     }
 }

@@ -39,14 +39,13 @@ public class BoardController {
     }
 
     @DeleteMapping
-    public int delete(@RequestParam int id){
-        System.out.println("delete-id:" + id);
+    public int deleteOne(@RequestParam int id){
         return boardService.dataDelete(id);
     }
 
     @PutMapping
-    public int modify(@RequestBody DataUpdateRes res){
-        System.out.println("modify:" + res);
-        return boardService.dataUpdate(res);
+    public int modifyOne(@RequestBody DataUpdateRes res){
+        return boardService.dataModify(res);
     }
+
 }
