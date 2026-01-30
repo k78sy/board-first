@@ -1,6 +1,7 @@
 package com.green.board.application;
 
 import com.green.board.application.model.DataListRes;
+import com.green.board.application.model.DataOneRes;
 import com.green.board.application.model.DataRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -29,5 +30,16 @@ public class BoardController {
     @GetMapping
     public List<DataListRes> findList(){
         return boardService.dataList();
+    }
+
+    @GetMapping("{id}")
+    public DataOneRes findOne(@PathVariable int id){
+        return boardService.dataDetail(id);
+    }
+
+    @DeleteMapping
+    public int delete(@RequestParam int id){
+        System.out.println("delete-id:" + id);
+        return boardService.dataDelete(id);
     }
 }

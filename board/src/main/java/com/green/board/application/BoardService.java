@@ -1,6 +1,7 @@
 package com.green.board.application;
 
 import com.green.board.application.model.DataListRes;
+import com.green.board.application.model.DataOneRes;
 import com.green.board.application.model.DataRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,13 @@ public class BoardService {
 
     public List<DataListRes> dataList(){
         return boardMapper.findList();
+    }
+
+    public DataOneRes dataDetail(int id){
+        return boardMapper.findOne(id);
+    }
+
+    public int dataDelete(int id){
+        return boardMapper.delete(id);
     }
 }

@@ -5,11 +5,22 @@
         INSERT INTO board
         (title, contents)
         VALUES
-        (#{title}, #{contents});
+        (#{title}, #{contents})
     </insert>
     <select id="findList">
         SELECT id, title, created_at AS createdAt
         FROM board
-        ORDER BY createdAt DESC;
+        ORDER BY createdAt DESC
     </select>
+    <select id="findOne">
+        SELECT id, title, contents, created_at AS createdAt
+        FROM board
+        WHERE id = #{id}
+    </select>
+
+    <delete id="delete">
+        DELETE
+        FROM board
+        WHERE id = #{id}
+    </delete>
 </mapper>
