@@ -1,6 +1,6 @@
 <script setup>
 import httpService from '@/service/httpService';
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
@@ -12,6 +12,16 @@ const state = reactive({
         contents: ''
     }
 })
+watch(
+    () => route.path,
+    (newPath) =>{
+        if(newPath === '/write'){
+            state.data.id = 0,
+            state.data.title = '',
+            state.data.contents = '';
+        }
+    }
+)
 
 onMounted(async () => {
     if (route.params.id) {
@@ -27,8 +37,6 @@ const submit = async () => {
     }
 
     const result = state.data.id ? await httpService.mod(state.data) : await httpService.save(state.data);
-
-    // const result = await httpService.save(state.data);
 
     if (result) {
         router.push(

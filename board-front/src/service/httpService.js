@@ -4,7 +4,8 @@ axios.defaults.baseURL = "http://localhost:8080";
 class httpSevice{
     #url = '/board_db';
     async save(jsonBody){
-        const res = await axios.post(this.#url, jsonBody)
+        const res = await axios.post(this.#url, jsonBody);
+        return res.data;
     }
     async list(){
         const res = await axios.get(this.#url);
