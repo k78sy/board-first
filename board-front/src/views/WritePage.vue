@@ -12,22 +12,24 @@ const state = reactive({
         contents: ''
     }
 })
-watch(
-    () => route.path,
-    (newPath) =>{
-        if(newPath === '/write'){
-            state.data.id = 0,
-            state.data.title = '',
-            state.data.contents = '';
-        }
-    }
-)
 
-onMounted(async () => {
-    if (route.params.id) {
-        state.data = await httpService.detail(route.params.id);
+
+// watch( 감시할대상, (새로운값, 이전값) => { 실행할코드 } )
+watch(
+  () => route.params.id, // 1. 주소창의 id가 변하는지 지켜본다!
+  async (newId) => {     // 2. id가 변하면 이 함수를 실행한다!
+    if (newId) {
+      // id가 존재하면? 수정 모드! 데이터를 불러와!
+      state.data = await httpService.detail(newId);
+    } else {
+      // id가 사라지면? 글쓰기 모드! 데이터를 비워!
+      state.data.id = 0;
+      state.data.title = '';
+      state.data.contents = '';
     }
-})
+  },
+  { immediate: true } // 3. 컴포넌트가 처음 생길 때(Mounted 시점)도 실행해라!
+);
 
 const submit = async () => {
     if (!state.data.title) {
@@ -56,6 +58,7 @@ const submit = async () => {
             <label>Title: <textarea v-model="state.data.contents"></textarea></label>
         </div>
         <div>
+            <button v-if="state.data.id" @click="router.back()">BACK</button>
             <button @click="submit">SEND</button>
         </div>
     </main>
